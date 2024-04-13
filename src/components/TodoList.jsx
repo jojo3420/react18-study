@@ -1,29 +1,10 @@
 import React, {useReducer, useState} from 'react';
+
+// Components
 import TodoItem from "./TodoItem.jsx";
-import {v4 as uuidv4} from 'uuid';
 import TodoInput from "./TodoInput.jsx";
 import AllClearBtn from "./AllClearBtn.jsx";
-
-const initTodoList = [
-	{ id: uuidv4(), text: 'Learn React', done: false },
-	{ id: uuidv4(), text: 'Clean Code', done: true },
-	{ id: uuidv4(), text: 'Ship App', done: false }
-];
-
-const todoReducer = (todoList, action) => {
-	switch (action.type) {
-		case 'ADD':
-			return [...todoList, {id: uuidv4(), text: action.payload, done: false}];
-		case 'REMOVE':
-			return todoList.filter(todo => todo.id !== action.id);
-		case 'TOGGLE':
-			return todoList.map(todo => todo.id === action.id ? {...todo, done: !todo.done} : todo);
-		case 'ALL_CLEAR':
-			return [];
-		default:
-			return todoList;
-	}
-}
+import { initTodoList, todoReducer } from "../reducer/todoReducer.js";
 
 
 function TodoList() {
@@ -42,19 +23,6 @@ function TodoList() {
 		setText('');
 	}
 
-	const handleRemove = (id) => {
-		if (id) {
-			dispatch({ type: 'REMOVE', id: id });
-		}
-	}
-
-	const handleToggle = (id) => {
-		if (id) {
-			dispatch({ type: 'TOGGLE', id: id });
-		}
-
-	}
-
 
 	return (
 		<>
@@ -66,7 +34,7 @@ function TodoList() {
 			<ul>
 				{todoList.map(todo => (
 					<li key={todo.id}>
-						<TodoItem item={todo} handleToggle={handleToggle} handleRemove={handleRemove} />
+						<TodoItem item={todo} dispatch={dispatch} />
 					</li>
 				))}
 			</ul>
