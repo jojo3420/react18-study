@@ -21,7 +21,8 @@ const todoReducer = (state, action) => {
 		case 'ADD_TODO':
 			return {
 				text: '',
-				todoList: [...state.todoList,
+				todoList: [
+					...state.todoList,
 					{ id: uuidv4(), text: state.text, done: false }
 				]
 			};
