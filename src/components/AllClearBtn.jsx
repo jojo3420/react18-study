@@ -1,9 +1,9 @@
 import React from 'react';
 
-function AllClearBtn({ setTodoList }) {
+function AllClearBtn({ dispatch }) {
 	return (
 		<>
-			<span onClick={() => setTodoList([])}>
+			<span onClick={() => dispatch({ type: 'ALL_CLEAR' })}>
 					모두 삭제
 				</span>
 		</>

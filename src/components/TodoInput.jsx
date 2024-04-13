@@ -4,7 +4,7 @@ function TodoInput({ text, handleText, handleAdd }) {
 	return (
 		<>
 			<button onClick={() => handleText('')}>clear</button>
-			<input value={text} onChange={({ target }) => handleText(target.value)} />
+			<input value={text} onChange={e => handleText(e.target.value)} />
 			<button onClick={handleAdd}>
 				Add
 			</button>

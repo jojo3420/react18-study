@@ -5,9 +5,10 @@ function TodoItem({ item, handleToggle, handleRemove }) {
 	return (
 		<>
 			<span
-				style={{ textDecoration: done ? 'line-through' : 'none', fontSize: '1.2rem', marginRight: '0.3rem'}}
-				onClick={handleToggle.bind(null, id)}>{text}</span>
-			<button onClick={handleRemove.bind(null, id)}>삭제</button>
+				style={{ textDecoration: done ? 'line-through' : 'none', background: done ? 'gray' : 'white', cursor: 'pointer', margin: '0.4rem'}}
+				onClick={handleToggle.bind(null, id)}>{text}
+			</span>
+			<button onClick={() => handleRemove(id)}>삭제</button>
 		</>
 	);
 }
