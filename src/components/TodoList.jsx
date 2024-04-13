@@ -4,25 +4,11 @@ import React, {useReducer, useState} from 'react';
 import TodoItem from "./TodoItem.jsx";
 import TodoInput from "./TodoInput.jsx";
 import AllClearBtn from "./AllClearBtn.jsx";
-import { initTodoList, todoReducer } from "../reducer/todoReducer.js";
+import { initState, todoReducer } from "../reducer/todoReducer.js";
 
 
 function TodoList() {
-	const [todoList, dispatch] = useReducer(todoReducer, initTodoList);
-	const [text, setText] = useState('');
-
-	const handleText = (value) => {
-		setText(value);
-	}
-
-	const handleAdd = () => {
-		if (!text) {
-			return alert("할일을 입력해주세요.");
-		}
-		dispatch({ type: 'ADD', payload: text});
-		setText('');
-	}
-
+	const [state, dispatch] = useReducer(todoReducer, initState);
 
 	return (
 		<>
@@ -30,9 +16,9 @@ function TodoList() {
 				<h1>할일목록</h1>
 				<AllClearBtn dispatch={dispatch} />
 			</div>
-			<TodoInput text={text} handleText={handleText} handleAdd={handleAdd} />
+			<TodoInput text={state.text} dispatch={dispatch} />
 			<ul>
-				{todoList.map(todo => (
+				{state.todoList.map(todo => (
 					<li key={todo.id}>
 						<TodoItem item={todo} dispatch={dispatch} />
 					</li>
