@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import TodoInput from "./TodoInput.jsx";
 import TodoItem from "./TodoItem.jsx";
 import AllClearBtn from "./AllClearBtn.jsx";
+import { TodoContext} from "../context/TodoContext.jsx";
 
 function TodoList() {
+	const { state } = useContext(TodoContext);
 	return (
 		<>
 			<h1>TodoList</h1>
 			<AllClearBtn />
 			<TodoInput />
-			{[1, 2, 3].map((value) => (
-				<TodoItem key={value} text={value} />
+			{state && state.todoList.map((todoItem) => (
+				<TodoItem key={todoItem.id} todoItem={todoItem} />
 			))}
 		</>
 	);

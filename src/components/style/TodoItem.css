@@ -1,0 +1,8 @@
+/* TodoItem.css */
+.todo-item {
+    margin-right: 0.5rem;
+}
+
+.todo-item-done {
+    text-decoration: line-through;
+}

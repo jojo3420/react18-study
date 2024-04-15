@@ -2,10 +2,13 @@
 import React from 'react'
 import './App.css'
 import TodoList from "./components/TodoList.jsx";
+import {TodoProvider} from "./context/TodoContext.jsx";
 
 function App() {
   return (
-    <TodoList />
+    <TodoProvider>
+      <TodoList />
+    </TodoProvider>
   )
 }
 
