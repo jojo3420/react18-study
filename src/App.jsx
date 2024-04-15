@@ -1,9 +1,16 @@
 import React from 'react';
 import './App.css';
-import TodoList from './components/TodoList.jsx';
+import { RecoilRoot } from 'recoil';
+import TodoList from './components/todolist/TodoList.jsx';
+import Counter from './components/ counter/Counter.jsx';
 
 function App() {
-  return <TodoList />;
+  return (
+    <RecoilRoot>
+      <TodoList />
+      <Counter />
+    </RecoilRoot>
+  );
 }
 
 export default App;

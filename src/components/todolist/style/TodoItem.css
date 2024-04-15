@@ -1,0 +1,9 @@
+.done {
+    text-decoration: line-through;
+    background: goldenrod;
+}
+
+.todo-item {
+    font-size: 1.2rem;
+    margin: 1rem 1.5rem 1rem 1rem;
+}
