@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import './style/TodoItem.css'
-import {TodoContext} from "../context/TodoContext.jsx";
+import {TodoContext} from "../../context/TodoContext.jsx";
 
 
 

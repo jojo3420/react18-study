@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { TodoContext } from "../context/TodoContext.jsx";
+import { TodoContext } from "../../context/TodoContext.jsx";
 
 function AllClearBtn() {
 	const { dispatch } = useContext(TodoContext);

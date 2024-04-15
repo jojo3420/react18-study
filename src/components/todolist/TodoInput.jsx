@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { TodoContext } from "../context/TodoContext.jsx";
+import { TodoContext } from "../../context/TodoContext.jsx";
 
 
 function TodoInput() {
@@ -7,7 +7,9 @@ function TodoInput() {
 	const handleChange = ({ target }) => dispatch({ type: 'SET_TEXT', payload: target.value });
 
 	const handleAdd = () => {
-		if (!state.text.trim()) return;
+		if (!state.text.trim()) {
+			return alert("할 일을 입력해주세요.");
+		};
 
 		dispatch({ type: 'ADD_TODO', payload: state.text });
 		dispatch({ type: 'SET_TEXT', payload: ''});

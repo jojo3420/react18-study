@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react';
-import { initState, todoReducer } from "../reducer/TodoReducer.js";
+import { initState, todoReducer } from "../reducer/todoReducer.js";
 
 // Context 생성
 const TodoContext = createContext({ state: {}, dispatch: () => {} });
