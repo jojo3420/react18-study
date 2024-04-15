@@ -2,58 +2,34 @@ import { selectorFamily, selector } from 'recoil';
 import { counterState, todoListState } from './recoilAtom.js';
 import { v4 as uuidv4 } from 'uuid';
 
-export const addTodoItem = selector({
-  key: 'addTodoItem',
-  get: () => undefined,
-  set: ({ set }, newValue) => {
-      set(todoListState, prevList => {
-        return [
-          ...prevList,
-          { id: uuidv4(), text: newValue, isDone: false },
-        ];
-      });
-    },
-});
 
-export const toggleTodoItem = selectorFamily({
-  key: 'toggleTodoItem',
-  get:
-    id =>
-    ({ get }) => {
-      const todoList = get(todoListState);
-      return todoList.find(todo => todo.id === id);
-    },
-  set:
-    id =>
-    ({ set, get }, newValue) => {
-      set(todoListState, prevList => {
-        return prevList.map(todo => {
-          if (todo.id === id) {
-            return { ...todo, isDone: !todo.isDone };
-          }
-          return todo;
+export const todoActions = selector({
+  key: 'todoActions',
+  get: ({ get }) => get(todoListState),
+  set: ({ set }, action) => {
+    switch (action.type) {
+      case 'ADD_TODO':
+        set(todoListState, prevList => {
+          return [...prevList, { id: uuidv4(), text: action.payload, isDone: false }];
         });
-      });
-    },
+        break;
+      case 'REMOVE_TODO':
+        set(todoListState, prevList => {
+          return prevList.filter(todo => todo.id !== action.payload);
+        });
+        break;
+      case 'TOGGLE_TODO':
+        set(todoListState, prevList => {
+          return prevList.map(todo =>
+            todo.id === action.payload ? { ...todo, isDone: !todo.isDone } : todo,
+          );
+        });
+        break;
+      default:
+        console.warn('Unknown action type');
+    }
+  },
 });
-
-export const removeTodoItem = selectorFamily({
-  key: 'removeTodoItem',
-  get:
-    id =>
-    ({ get }) => {
-      const todoList = get(todoListState);
-      return todoList.find(todo => todo.id === id);
-    },
-  set:
-    id =>
-    ({ set, get }) => {
-      set(todoListState, prevList => {
-        return prevList.filter(todo => todo.id !== id);
-      });
-    },
-});
-
 
 export const counterActions = selector({
   key: 'counterActions',
@@ -72,5 +48,5 @@ export const counterActions = selector({
       default:
         console.warn('Unknown action type');
     }
-  }
+  },
 });

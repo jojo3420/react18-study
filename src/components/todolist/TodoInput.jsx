@@ -1,19 +1,19 @@
 import React from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { todoTextState } from '../../recoilState/recoilAtom.js';
-import { addTodoItem } from '../../recoilState/recoilSelectors.js'
+import { todoActions } from '../../recoilState/recoilSelectors.js';
 
 
 function TodoInput() {
   const [text, setText] = useRecoilState(todoTextState);
-  const addTodo  = useSetRecoilState(addTodoItem);
+  const dispatch  = useSetRecoilState(todoActions);
 
   const handleAddTodo = () => {
     if (!text.trim()) {
       alert('할 일을 입력해주세요.');
       return;
     }
-    addTodo(text);
+    dispatch({ type: 'ADD_TODO', payload: text });
     setText('');
   };
 
