@@ -12,19 +12,26 @@ export const todoListState = atom({
     { id: uuidv4(), text: 'Study React', isDone: false },
     { id: uuidv4(), text: 'Study Context API', isDone: true },
     { id: uuidv4(), text: 'Study Recoil', isDone: false },
-  ]
+  ],
 });
 
 export const todoTextState = atom({
   key: 'todoTextState',
-  default: ''
+  default: '',
 });
-
-
 
 export const counterState = atom({
   key: 'counterState',
-  default: 0
+  default: 0,
+});
+
+export const usersState = atom({
+  key: 'usersState',
+  default: [],
 });
 
 
+export const selectedUserIdState = atom({
+  key: 'selectedUserIdState',
+  default: null, // user.id
+});
